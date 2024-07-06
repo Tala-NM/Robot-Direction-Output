@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Direction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .direction-box {
+            background-color: pink;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 20px;
+            width: fit-content;
+            margin: 20px auto;
+            text-align: center;
+            transition: color 1s ease;
+        }
+        .direction-box p {
+            font-size: 24px;
+            color: pink;
+            transition: color 1s ease;
+        }
+    </style>
+    <script>
+        function fetchLastDirection() {
+            fetch('get_last_direction.php')
+                .then(response => response.text())
+                .then(data => {
+                    const directionElement = document.getElementById('direction');
+                    directionElement.innerText = data;
+                    directionElement.style.color = 'black';
+                })
+                .catch(error => console.error('Error fetching direction:', error));
+        }
+        window.onload = fetchLastDirection;
+    </script>
+</head>
+<body>
+    <div class="direction-box">
+        <h1>Last Direction:</h1>
+        <p id="direction">Loading...</p>
+    </div>
+</body>
+</html>
